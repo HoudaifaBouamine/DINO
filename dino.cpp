@@ -6,10 +6,25 @@
 #include "game.h"
 using namespace std;
 
+void read(int& number) {
+
+	cin >> number;
+}
+
+void print(int number) {
+
+	cout << number << endl;
+}
+
+void print(string s) {
+
+	cout << s << endl;
+}
+
 int main(int argc,char* argv[])
 {
 
-	
+
 	run();
 
 

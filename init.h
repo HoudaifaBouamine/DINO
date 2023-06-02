@@ -75,8 +75,8 @@ void initGame() {
 	SDL_SetRenderDrawColor(app.renderer, 0, 0, 0, 255);
 
 	
-	player.rect.x = 25;
-	player.rect.y = 35;
+	player.rect.x = 8;
+	player.rect.y = 8;
 	player.rect.w = 4;
 	player.rect.h = 4;
 	player.view.angle = 0;
@@ -115,8 +115,13 @@ void initGame() {
 	map[28] = "#                            #";
 	map[29] = "##############################";;
 
-	rec.h = 10;
-	rec.w = 10;
+	rec.h = 5;
+	rec.w = 5;
+
+	for (size_t i = 0; i < 200; i++)
+	{
+		player.view.dis.push_back({});
+	}
 
 }
 

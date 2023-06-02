@@ -8,6 +8,8 @@
 #include "input.h"
 #include "logic.h"
 #include "draw.h"
+#include "benchmark.h"
+#include <windows.h>
 using namespace std;
 
 void clear() {
@@ -18,17 +20,60 @@ void clear() {
 
 }
 
+void clear_screen()
+
+{
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0,0 });
+}
+
+static void capFrameRate()
+{
+
+	static long then;
+	static float remainder = 0;
+
+	long wait, frameTime;
+
+	wait = 16 + remainder;
+
+	remainder -= (int)remainder;
+
+	frameTime = SDL_GetTicks() - then;
+
+	wait -= frameTime;
+
+	if (wait < 1)
+	{
+		wait = 1;
+	}
+
+	SDL_Delay(wait);
+
+	remainder += 0.667;
+
+	then = SDL_GetTicks();
+}
+
+
+
+
+
+
 void run() {
 
 	initSDL();
 	initGame();
 	initMapPoints();
 	
+	Benchmark test;
 
 	while (true) {
 
 
 		clear();
+
+		test.start();
+
 		doInput();
 		drawMap();
 
@@ -36,9 +81,23 @@ void run() {
 
 		doLogic();
 		draw();
+
+		test.end();
+		static int cpt = 10;
+		static int prosses = 0;
+
+		prosses += test.time;
+		if (!--cpt) {
+
+			clear_screen();
+			printf("time : %d     \n",prosses/10);
+			cpt = 10;
+			prosses = 0;
+		}
+
 		SDL_RenderPresent(app.renderer);
 
-		SDL_Delay(16);
+		capFrameRate();
 	}
 
 

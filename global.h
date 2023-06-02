@@ -12,6 +12,6 @@ using namespace std;
 
 App app = {};
 Player player = {};
-SDL_Rect rec = {};
+SDL_FRect rec = {};
 string map[30] = {};
-vector<SDL_Rect> map_points = {};
+vector<SDL_FRect> map_points = {};

@@ -32,12 +32,25 @@ struct View {
 
 	float angle;
 	vector<Point> points = {};
-	short distance;
-	
+	float distance;
+	vector<float> dis;
 };
 
 struct Player {
 
-	SDL_Rect rect;
+	
+	SDL_FRect rect;
+
+	SDL_Rect GetRect() {
+		SDL_Rect r;
+		r.x = rect.x;
+		r.y = rect.y;
+		r.h = rect.h;
+		r.w = rect.w;
+
+		return r;
+	}
+
 	View view;
+
 };
