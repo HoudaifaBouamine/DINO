@@ -1,0 +1,6 @@
+#pragma once
+#define SCREEN_WIDTH 400
+#define SCREEN_HEIGHT 400
+#define MAX_KEYBOARD_KEYS 350
+
+#define PI 3.14159265359
